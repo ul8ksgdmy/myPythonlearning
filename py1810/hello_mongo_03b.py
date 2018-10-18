@@ -29,8 +29,15 @@ for html in re.findall(r'<li class="sub_book_list">.*?</li>' , text, re.DOTALL):
     title = re.sub(r'<!--', '', title)
     title = re.sub(r'-->', '', title)
     # title = re.sub(r'\s{2,}', '', title)
-    # title = re.sub(r'\r\n', '/', title)    
+    title = re.sub(r'\r\n', '/', title)    
     # bData = title.split(r'\s')
+    
+    # title = re.sub(r'<.*?>', '', html)
+    # title = re.sub(r'\r\n', '|', title)
+    # title = re.sub(r'\s', '', title)
+    # title = re.sub(r'<!--', '', title)
+    # title = re.sub(r'-->', '', title)
+    # title = re.sub(r'\|{3}', '', title)
 
     print(title.strip())
     # print(bData)
