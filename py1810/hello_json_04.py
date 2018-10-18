@@ -55,7 +55,9 @@ with open('apt.txt','w', encoding='utf-8') as f:
             save = j+'\n'
             f.write(save)
 
-firefox.quit()
+with open('apt.txt', 'r', encoding=encoding) as f:
+    for i in 
+
 
 # for i in range(len(apt)):
 #     apt_low = apt[i].split(r'/s')
