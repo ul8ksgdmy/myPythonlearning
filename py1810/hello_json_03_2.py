@@ -33,6 +33,7 @@ for i in range(int((len(allList)+1)/12)):
     estateList.append(allList[12*i+1])
 
 #리스트의 빈 칸에 아파트와 지번을 채운다.
+#아파트
 for i in range(len(aptList)):
     if aptList[i] != '*':
         p_aptList.append(aptList[i])
@@ -42,6 +43,7 @@ for i in range(len(aptList)):
             j -= 1
         p_aptList.append(aptList[j])
 
+#지번
 for i in range(len(estateList)):
     if aptList[i] != '*':
         p_estateList.append(estateList[i])
@@ -78,17 +80,17 @@ for i in range(len(p_aptList)):
     datails1['contract date'] = allList[i*12+3]
     datails1['price'] = allList[i*12+4]
     #아니 대체 왜 여기서 에러가 뜨는거야????????
-    # details1['floor'] = allList[i*12+5]
+    datails1['floor'] = allList[i*12+5]
 
     # #두번째 달의 상세
     datails2['contract date'] = allList[i*12+6]
     datails2['price'] = allList[i*12+7]
-    # details2['floor'] = allList[i*12+8]
+    datails2['floor'] = allList[i*12+8]
 
     # #세번째 달의 상세
     datails3['contract date'] = allList[i*12+9]
     datails3['price'] = allList[i*12+10]
-    # details3['floor'] = allList[i*12+11]
+    datails3['floor'] = allList[i*12+11]
 
     #상세리스트를 객체에 넣기
     #달의 상세 내역을 달에 넣는다.

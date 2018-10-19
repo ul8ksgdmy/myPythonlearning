@@ -20,7 +20,7 @@ firefox = webdriver.Firefox(executable_path=r'C:\Program Files\Mozilla Firefox\g
 #타겟 페이지 접속
 url = 'http://land.seoul.go.kr/land/jsp/menu/main.jsp?menuInx=21'
 firefox.get(url)
-time.sleep(2)
+time.sleep(5)
 
 firefox.switch_to_frame(firefox.find_element_by_css_selector('iframe#contentFrame'))
 firefox.switch_to_frame(firefox.find_element_by_css_selector('iframe#contentInfoFrame') )

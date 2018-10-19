@@ -2,11 +2,11 @@
 import json
 from pymongo import MongoClient
 
-with open('C:\\Users\W7\python-workspace\myPythonpractice\DB\myinfo.json') as f:
+with open('D:\py\myPythonlearning\py1810\myinfo.json') as f:
     data = json.load(f)
 
 host = data['host']
-port = data['mongoport']
+port = data['port']
 
 #mongodb 접속
 client = MongoClient(host, port)
@@ -21,5 +21,5 @@ print(type(japt))
 
 insert = col.insert(japt)
 
-print(insert.inserted_id)
+# print(insert.inserted_id)
 
