@@ -7,7 +7,7 @@ import pymysql
 class protoSJDAO:
 
     def insertSungjuk(self, sj):
-        conn = pymysql.connect(host='13.125.178.188', charset='utf8', user='my', password='123456', db='my')
+        conn = pymysql.connect(host='host address', charset='utf8', user='user name', password='password', db='db name')
         cursor = conn.cursor()
 
         # 실행할 mysql 쿼리 작성
@@ -25,7 +25,7 @@ class protoSJDAO:
         print('결과 저장')
 
     def selectSungjuk(self):
-        conn = pymysql.connect(host='13.125.178.188', charset='utf8', user='my', password='123456', db='my')
+        conn = pymysql.connect(host='host address', charset='utf8', user='user name', password='password', db='db name')
         # cursor = conn.cursor() #1
         cursor = conn.cursor(pymysql.cursors.DictCursor) #2
 
