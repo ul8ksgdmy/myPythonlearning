@@ -22,9 +22,9 @@ def computeSungJuk(kor, eng, mat):
     mean = tot /3
     grd = '가'
     if mean >= 90: grd = '수'
-    if mean >= 80: grd = '우'
-    if mean >= 70: grd = '미'
-    if mean >= 60: grd = '양'
+    elif mean >= 80: grd = '우'
+    elif mean >= 70: grd = '미'
+    elif mean >= 60: grd = '양'
 
     return tot, mean, grd
 
@@ -80,9 +80,6 @@ bluecar = Car(10, 'blue', 2, 2, False)
 #객체의 속성에 접근하려면 연산자를 이용
 print(redcar.color, redcar.size)
 
-
-
-
 # 객체지향프로그램은 함수들과 관련 변수를 하나로 묶음.
 class SungJukVO(): #변수로 구성된 클래스
     pass
@@ -90,4 +87,86 @@ class SungJukVO(): #변수로 구성된 클래스
 class SungJukDAO(): #처리코드들로 구성된 클래스
     pass
 
+#VO 클래스들은 RDBMS의 테이블과 유사한 구조로 구성
+#사원정보 입력 -> employee 클래스에 저장 -> RDBMS로 저장
+#사원정보 조회 -> RDBMS에서 관련정보 추출 -> employee  클래스에 저장
+# -> 추출이 끝날때까지 반복 -> 리스트에 저장 -> 화면에 출력
 
+class Employee:
+    def __init__(self, empid, fname, lname, email, phone, hdate, jobid, sal, comm, mgrid, depid):
+        self.empid = empid
+        self.fname = fname
+        self.lname = lname
+        self.email = email
+        self.phone = phone
+        self.hdate = hdate
+        self.jobid = jobid
+        self.sal = sal
+        self.comm = comm
+        self.mgrid = mgrid
+        self.depid = depid
+
+    #멤버 출력 함수
+    #클래스 정의시 기본적으로 제공되는 특수한 함수
+    def __str__(self):
+        msg = '%s, %s, %s' % (self.empid, self.lname, self.jobid)
+        return msg
+
+#사원 객체 생성
+emp1 = Employee(100, 'Steven', 'King', 'SKING', '515.123.4567', '2003-06-17', 'AD_PRES', 24000, '', '', 90)
+emp2 = Employee(145, 'John', 'Russel', 'JRUSSEL', '011.44.1344.429268', '2004-10-01', 'SA_NAN', 14000, 0.4, 100, 80)
+
+print(emp1.empid, emp1.lname, emp1.jobid)
+print(emp2.empid, emp2.lname, emp2.jobid)
+
+# __str__함수 정의 : 미리 정의된 함수로 출력
+print(emp1)
+
+## OOP의 캡슐화에 근거해서 객체명.속성으로 값을 수정하거나 읽는 것은 비추 (ex - emp1.empid = 999)
+## 이러한 작업은 setter, getter 메서드를 사용해야 함.
+## 접근제어 기능을 이용해서 객체명.속성으로는 수정/조회 기능만 가능하게 함.
+## 멤버에 접근제한 기능 부여하는 방법은 멤버명 앞에 __를 추가하면 private 멤버로 선언
+## private 멤버로 접근할 수 있도록 setter, getter 메서드 생성
+## 함수명에 set, get이라는 접두사를 붙임.
+
+
+#캡슐화된 클래스
+class Employee2:
+    def __init__(self, empid, fname, lname, email, phone, hdate, jobid, sal, comm, mgrid, depid):
+        self.__empid = empid
+        self.__fname = fname
+        self.__lname = lname
+        self.__email = email
+        self.__phone = phone
+        self.__hdate = hdate
+        self.__jobid = jobid
+        self.__sal = sal
+        self.__comm = comm
+        self.__mgrid = mgrid
+        self.__depid = depid
+
+    #getter와 setter 자바에서 쓰는 방법
+    def setEmpid(self, empid):
+        self.__empid = empid
+
+    def getEmpid(self):
+        return self.__empid
+
+    #getter와 setter를 python에서 쓰는 방법
+    #멤버명 앞에 @(decorator)를 붙여서 함수를 사용.
+
+    @property
+    def lname(self):
+        return self.__lname
+
+    @lname.setter
+    def lname(self, lname):
+        self.__lname = lname
+
+emp3 = Employee2(100, 'Steven', 'King', 'SKING', '515.123.4567', '2003-06-17', 'AD_PRES', 24000, '', '', 90)
+
+print(emp3.getEmpid())
+emp3.setEmpid(999)
+print(emp3.getEmpid())
+
+print(emp3.lname)
