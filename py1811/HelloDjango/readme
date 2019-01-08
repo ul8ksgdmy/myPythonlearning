@@ -1,0 +1,61 @@
+#Django 웹 프로젝트
+
+#1. 장고패키지 설치
+pip install Django
+
+#2. 장고 프로젝트 수동 생성
+파이참의 terminal 창을 열고 다음 명령 입력
+명령어 : 'django-admin.py startproject 프로젝트 이름'
+django-admin.py startproject firstDjango
+
+#3. 장고 서버 수동 등록
+run -> edit configurations -> 상단의 + 클릭 -> python선택
+
+script path : 프로젝트 폴더 내의 manage.py 선택
+parameter : runserver 8080
+
+#4. 장고 서버 실행 및 환영 페이지 확인
+run -> run 'manage'
+실행창의 http://127.0.0.1:8080/ 클릭
+
+#5. 장고 App 생성
+'manage.py startapp 앱이름'
+파이참의 터미널 창을 열고 다음 명령입력
+cd firstDjango
+manage.py startapp home
+manage.py startapp member
+manage.py startapp board
+
+#6. 장고 App설정 1 - urlpattern
+url 규칙 정의 - firstDjango > firstDjango > urls.py
+
+http://127.0.0.1:8080/
+http://127.0.0.1:8080/home
+http://127.0.0.1:8080/member
+http://127.0.0.1:8080/board
+
+urls.py의 urlpatterns에 다음 코드를 추가
+path('', include('home.urls')),
+path('home/', 'home.urls')
+
+#6. 장고 App설정 2 - home.urls
+url 규칙 정의 : firstDjango > home > urls.py
+아래와 같이 써준다.
+
+from . import views
+
+urlpatterns = [
+    path('', views.index)
+]
+
+#6. 장고 App설정 3 - home.views
+home앱의 view 정의
+firstDjango > home > views.py
+아래와 같이 써준다.
+from django.shortcuts import render
+
+# Create your views here.
+def index(request):
+    return HttpResponse('hello, world!!')
+
+#6. 장고 App설정 4 - board, member도 마찬가지로 설정한다.
